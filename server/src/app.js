@@ -7,7 +7,8 @@ import userRoutes from './routes/users.js';
 
 const app = express();
 
-app.use(morgan('dev'));
+// Jest sets NODE_ENV=test — skip request logs so test output stays readable
+if (process.env.NODE_ENV !== 'test') app.use(morgan('dev'));
 app.use(cors({ origin: 'http://localhost:5175', credentials: false }));
 app.use(express.json());
 
